@@ -1,18 +1,13 @@
 set encoding=utf-8
-scriptencoding utf-8
 
 set wildmenu "コマンドモードの保管
 set history=5000 "保存するコマンドの数
-
-set lines=35
-set columns=90
 
 set nowritebackup
 set nobackup
 set noswapfile
 
 set number
-" set whichwrap=b,s,h,l,<,>,[,],‾  " カーソルの行頭移動が可能
 set cursorline
 set showmatch
 set visualbell
@@ -27,7 +22,7 @@ set autoindent
 
 nnoremap ; :
 nnoremap : ;
-" 分割・タブの設定
+
 nnoremap s <Nop>
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
@@ -61,7 +56,7 @@ nnoremap <S-j> {
 nnoremap <S-k> }
 nnoremap <S-l> $
 nnoremap == gg=G<CR>
-nnoremap ,v :sp ‾/.vimrc<CR>
+nnoremap ,v :sp ~/.vimrc<CR>
 nnoremap <S-q> :wq<CR>
 
 " 検索
@@ -70,28 +65,30 @@ set wrapscan
 set hlsearch
 
 " C言語用設定
-source ‾/.vim/mycmd/c_template/c_template.vim
-autocmd BufNewFile *.c 0r ‾/.vim/template/temp.c
-
-" tex用設定
-source ‾/.vim/mycmd/tex_temp/tex_temp.vim
-autocmd BufNewFile *.tex 0r ‾/.vim/template/temp.tex
-
-" python用設定
-source ‾/.vim/mycmd/py_template/py_template.vim
-source ‾/.vim/mycmd/py_template/mat_font.vim
-autocmd BufNewFile *.py 0r ‾/.vim/template/temp.py
-
-" java用設定
-autocmd BufNewFile *.java 0r ‾/.vim/template/temp.java
+"source ‾/.vim/mycmd/c_temp/c_temp.vim
+autocmd BufRead,BufNewFile *.c setfiletype c
+autocmd BufNewFile *.c 0r ~/.vim/temp/temp.c
+"
+"" tex用設定
+"source ‾/.vim/mycmd/tex_temp/tex_temp.vim
+"autocmd BufNewFile *.tex 0r ~/.vim/temp/temp.tex
+"
+"" python用設定
+"source ‾/.vim/mycmd/py_temp/py_temp.vim
+"source ‾/.vim/mycmd/py_temp/mat_font.vim
+autocmd BufRead,BufNewFile ".py setfiletype python
+autocmd BufNewFile *.py 0r ~/.vim/temp/temp.py
+"
+"" java用設定
+autocmd BufNewFile *.java 0r ~/.vim/temp/temp.java
 
 set nocompatible
 filetype plugin indent off
 
 if has('vim_starting')
-  set runtimepath+=‾/.vim/bundle/neobundle.vim
+  set runtimepath+=~/.vim/bundle/neobundle.vim
 
-  call neobundle#begin(expand('‾/.vim/bundle'))
+  call neobundle#begin(expand('~/.vim/bundle'))
   NeoBundleFetch 'Shougo/neobundle.vim'
   NeoBundle 'kana/vim-operator-user'
   " jedi-vim
@@ -169,11 +166,17 @@ call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
+" jedi-vim
+let g:jedi#popup_select_first = 0
+let g:jedi#popup_on_dot = 0
+" Not show popup
+autocmd FileType python setlocal completeopt-=preview
+
 " vim-quickrunの設定
 au FileType af nnoremap <silent><buffer>q :quit<CR>
-let g:quickrun_config={'_': {'split': ''}}
+let g:quickrun_config={'*':{'split': ''}}
 set splitbelow
-let g:quickrun_config={'_': {'hook/time/enable': '1'}}
+let g:quickrun_config={'*':{'hook/time/enable':'1'}}
 
 " supertabの設定
 let g:SuperTabContextDefaultCompletionType = "context"
@@ -181,7 +184,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 "カラースキームの設定
 set t_Co=256
-colorscheme torte
+colorscheme eva01-LCL
 syntax on
 
 "ステータスラインの設定
