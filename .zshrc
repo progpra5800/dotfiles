@@ -6,7 +6,7 @@ export LANG=en_US.UTF-8
 
 # prompt
 PROMPT="$ "
-PROMTP2="> "
+RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
 
 # colors
 autoload -U colors; colors
