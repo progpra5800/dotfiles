@@ -22,7 +22,6 @@ set autoindent
 
 nnoremap ; :
 nnoremap : ;
-
 nnoremap s <Nop>
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
@@ -76,13 +75,16 @@ autocmd BufNewFile *.c 0r ~/.vim/temp/temp.c
 "" python用設定
 "source ‾/.vim/mycmd/py_temp/py_temp.vim
 "source ‾/.vim/mycmd/py_temp/mat_font.vim
-autocmd BufRead,BufNewFile ".py setfiletype python
+autocmd BufRead,BufNewFile *.py setfiletype python
 autocmd BufNewFile *.py 0r ~/.vim/temp/temp.py
 "
 "" java用設定
 autocmd BufNewFile *.java 0r ~/.vim/temp/temp.java
 
+" html用設定
+autocmd BufRead,BufNewFile *.html setfiletype html
 set nocompatible
+
 filetype plugin indent off
 
 if has('vim_starting')
@@ -102,7 +104,7 @@ if has('vim_starting')
   " autopep8
   NeoBundle 'tell-k/vim-autopep8'
   " indent-guides
-  NeoBundle 'nathanaekale/vim-indent-guides'
+  NeoBundle 'nathanaelkane/vim-indent-guides'
   " syntastic
   NeoBundle 'scrooloose/syntastic'
   " カラースキーム
@@ -118,7 +120,7 @@ if has('vim_starting')
   NeoBundle 'tyrannicaltoucan/vim-deep-space'
   " Unite.vim
   NeoBundle 'Shougo/unite.vim'
-  NeoBundle 'Shougo/unit-outline'
+  NeoBundle 'Shougo/unite-outline'
   NeoBundle 'ujihisa/unite-colorscheme'
   " NERDTree
   NeoBundle 'scrooloose/nerdtree'
@@ -133,13 +135,13 @@ if has('vim_starting')
   " tex-conceal
   NeoBundle 'KeitaNakamura/tex-conceal.vim'
   " vin-tags
-  NeoBundle 'szw/vin-tags'
+  NeoBundle 'szw/vim-tags'
   " vin-endwise
   NeoBundle 'tpope/vim-endwise'
   " emmet-vim
   NeoBundle 'mattn/emmet-vim'
   " surround.vim
-  NeoBundle 'taichouchou2/surround.vim'
+  NeoBundle 'tpope/vim-surround'
   " open-browser.vim
   NeoBundle 'open-browser.vim'
   " javacomplete2
@@ -148,6 +150,21 @@ if has('vim_starting')
   NeoBundle 'Shougo/neosnippet'
   " neosnippets-snippets
   NeoBundle 'Shougo/neosnippet-snippets'
+  " emmet.vim
+  NeoBundle 'mattn/emmet-vim'
+  " open-browser
+  NeoBundle 'open-browser.vim'
+  NeoBundle 'mattn/webapi-vim'
+  " vim-css3-syntax
+  NeoBundle 'hail2u/vim-css3-syntax'
+  NeoBundle 'taichouchou2/html5.vim'
+  " vim-javascript
+  NeoBundle 'pangloss/vim-javascript'
+  " vim-coffee-script
+  NeoBundle 'kchmck/vim-coffee-script'
+  " vim-nodejs-complete
+  NeoBundle 'myhere/vim-nodejs-complete'
+
   call neobundle#end()
 
 endif
@@ -227,3 +244,24 @@ if has ('conceal')
 endif
 
 let g:neosnippet#snippets_directory='‾/.vim/bundle/neosnippet-snippets/snippets,‾/.vim/snippets'
+
+" pyflakes-vimの設定
+" let g:syntastic_mode_map = {
+"             \ 'mode': 'active',
+"             \ 'active_filetypes': ['php', 'coffeescript', 'sh', 'vim'],
+"             \ 'passive_filetypes': ['html', 'haskell', 'python']
+"             \}
+"
+" open-browser
+nmap <Leader>o <Plug>(openbrowser-open)
+vmap <Leader>o <Plug>(openbrowser-open)
+
+" vim-nodejs-complete
+autocmd Filetype javascript setlocal omnifunc=nodejscomplete#CompleteJS
+if !exists('g:neocomplcache_omni_functions')
+    let g:neocomplcache_omni_functions = {}
+endif
+let g:neocomplcache_omni_functions.javascript = 'nodejscomplete#CompleteJS'
+
+let g:node_usejscomplete = 1
+imap <C-f> <C-x><C-o>
