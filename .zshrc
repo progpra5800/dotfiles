@@ -57,4 +57,4 @@ export PATH="/home/yorimoto/anaconda3/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-alias proterminator='terminator -l proterminator&&exit'
+alias proterminator='terminator -l proterminator && exit'

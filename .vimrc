@@ -243,7 +243,7 @@ if has ('conceal')
     set conceallevel=2 concealcursor=niv
 endif
 
-let g:neosnippet#snippets_directory='‾/.vim/bundle/neosnippet-snippets/snippets,‾/.vim/snippets'
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets,~/.vim/snippets'
 
 " pyflakes-vimの設定
 " let g:syntastic_mode_map = {
