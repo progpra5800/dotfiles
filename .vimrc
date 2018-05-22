@@ -265,3 +265,7 @@ let g:neocomplcache_omni_functions.javascript = 'nodejscomplete#CompleteJS'
 
 let g:node_usejscomplete = 1
 imap <C-f> <C-x><C-o>
+
+" NERDTree
+autocmd vimenter * if !argc() | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
