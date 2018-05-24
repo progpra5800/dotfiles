@@ -32,18 +32,24 @@ setopt pushd_ignore_dups
 # completion
 autoload -U compinit
 compinit
+alias ls='ls -l --color=auto'
+alias la='ls -al --color=auto'
 setopt correct
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 setopt IGNOREEOF
 
+alias so='source'
+
 # setting zmv
 autoload -Uz zmv
 alias zmv='noglob zmv -W'
 
+
 # ls command after cd command
 chpwd() { ls -ltrG }
+
 # mkdir and cd command at the same time
 function mkcd(){
     if [[ -d $1 ]]; then
@@ -54,3 +60,9 @@ function mkcd(){
     fi
 }
 
+# added by Anaconda3 installer
+export PATH="/home/yorimoto/anaconda3/bin:$PATH"
+# export PATH="/home/yorimoto/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
+
+alias proterminator='terminator -l proterminator & exit'
