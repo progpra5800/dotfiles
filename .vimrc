@@ -56,6 +56,7 @@ nnoremap <S-k> }
 nnoremap <S-l> $
 nnoremap == gg=G<CR>
 nnoremap ,v :sp ~/.vimrc<CR>
+nnoremap ,z :sp ~/.zshrc<CR>
 nnoremap <S-q> :wq<CR>
 
 " 検索
@@ -68,22 +69,22 @@ set hlsearch
 autocmd BufRead,BufNewFile *.c setfiletype c
 autocmd BufNewFile *.c 0r ~/.vim/temp/temp.c
 "
-"" tex用設定
+" tex用設定
 "source ‾/.vim/mycmd/tex_temp/tex_temp.vim
 "autocmd BufNewFile *.tex 0r ~/.vim/temp/temp.tex
 "
-"" python用設定
+" python用設定
 "source ‾/.vim/mycmd/py_temp/py_temp.vim
 "source ‾/.vim/mycmd/py_temp/mat_font.vim
 autocmd BufRead,BufNewFile *.py setfiletype python
 autocmd BufNewFile *.py 0r ~/.vim/temp/temp.py
 "
-"" java用設定
-autocmd BufNewFile *.java 0r ~/.vim/temp/temp.java
+" java用設定
+" autocmd BufNewFile *.java 0r ~/.vim/temp/temp.java
 
 " html用設定
-autocmd BufRead,BufNewFile *.html setfiletype html
-set nocompatible
+" autocmd BufRead,BufNewFile *.html setfiletype html
+" set nocompatible
 
 filetype plugin indent off
 

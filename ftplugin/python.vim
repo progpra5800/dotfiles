@@ -22,7 +22,6 @@ path = home + "/anaconda3/lib/python3.6/site-packages"
 if not path in sys.path:
 	sys.path.insert(0, path)
 path = home + '/anaconda3/envs/'
-os.chdir(path)
 for i in os.listdir(path):
     path2 = path + i + '/lib/python3.6/site-packages'
     print(path2)
