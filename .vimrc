@@ -68,6 +68,7 @@ set hlsearch
 "source ‾/.vim/mycmd/c_temp/c_temp.vim
 autocmd BufRead,BufNewFile *.c setfiletype c
 autocmd BufNewFile *.c 0r ~/.vim/temp/temp.c
+autocmd BufNewFile *.cpp 0r ~/.vim/temp/temp.cpp
 "
 " tex用設定
 "source ‾/.vim/mycmd/tex_temp/tex_temp.vim
