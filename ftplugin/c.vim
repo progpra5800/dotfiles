@@ -6,5 +6,8 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 
-nnoremap <C-g> :w<CR>:!gcc -o t %<CR>
-nnoremap <C-t> :!./t<CR>
+nnoremap <C-g> :w<CR>:!gcc -o %:r % -lm<CR>
+nnoremap <C-p> :w<CR>:!g++ -o %:r % -lm<CR>
+nnoremap <C-m> :w<CR>:!gcc -o %:r % module.c -lm<CR>
+nnoremap <C-q> :w<CR>:!g++ -o %:r % module.cpp -lm<CR>
+nnoremap <C-t> :!./%:r<CR>

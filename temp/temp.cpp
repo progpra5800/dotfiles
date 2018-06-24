@@ -1,6 +1,6 @@
 /* coding: utf-8 */
 #include <iostream>
-using namespase std;
+using namespace std;
 
 
 int main(){

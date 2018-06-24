@@ -7,6 +7,7 @@ set softtabstop=4
 set autoindent
 
 nnoremap <C-p> :w<CR>:Q<CR>
+nnoremap <C-s> :w<CR>:!python % build_ext --inplace<CR>
 
 let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
