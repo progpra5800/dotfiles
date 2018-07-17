@@ -1,6 +1,6 @@
 ! coding: utf-8
 
-program <filename>
+program main
   implicit none
 
-end program <filename>
+end program main

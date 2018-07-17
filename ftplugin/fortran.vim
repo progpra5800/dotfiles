@@ -6,11 +6,11 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 
-nnoremap <C-n> :w<CR>:!gfortran % -o t<CR>
-nnoremap <C-k> ;w<CR> !gfortran module.f90 subprog.f90 %r -o t<CR>
-nnoremap <C-y> ;w<CR> !gfortran module.f90 funcprog.f90 %r -o t<CR>
-nnoremap <C-m> ;w<CR> !gfortran module.f90 funcprog.f90 subprog.f90 %r -o t<CR>
-nnoremap <C-t> :!./t<CR>
+nnoremap <C-n> :w<CR>:!gfortran % -o %:r<CR>
+nnoremap <C-k> :w<CR>:!gfortran module.f90 subprog.f90 % -o %:r<CR>
+nnoremap <C-y> :w<CR>:!gfortran module.f90 funcprog.f90 % -o %:r<CR>
+nnoremap <C-m> :w<CR>:!gfortran module.f90 funcprog.f90 subprog.f90 % -o %:r<CR>
+nnoremap <C-t> :!./%:r<CR>
 
 let fortran_free_source=1
 let fortran_fold=1
