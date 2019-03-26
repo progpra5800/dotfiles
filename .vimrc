@@ -37,6 +37,7 @@ nnoremap s= <C-w>=
 nnoremap s> <C-w>>
 nnoremap s< <C-w><
 nnoremap sq :<C-u>q<CR>
+nnoremap <C-k> <Nop>
 
 " 挿入からノーマルへ
 inoremap <silent> jj <ESC>
@@ -51,8 +52,8 @@ inoremap ( ()<Left>
 
 " キー割り当て
 nnoremap <S-h> ^
-nnoremap <S-j> {
-nnoremap <S-k> }
+nnoremap <S-k> {
+nnoremap <S-j> }
 nnoremap <S-l> $
 nnoremap == gg=G<CR>
 nnoremap ,v :sp ~/.vimrc<CR>
@@ -64,6 +65,9 @@ set incsearch
 set wrapscan
 set hlsearch
 
+" fortran用設定
+autocmd BufRead,BufNewFile *.f90 setfiletype fortran
+autocmd BufNewFile *.f90 0r ~/.vim/temp/temp.f90
 " C言語用設定
 "source ‾/.vim/mycmd/c_temp/c_temp.vim
 autocmd BufRead,BufNewFile *.c setfiletype c
@@ -71,21 +75,19 @@ autocmd BufNewFile *.c 0r ~/.vim/temp/temp.c
 autocmd BufNewFile *.cpp 0r ~/.vim/temp/temp.cpp
 "
 " tex用設定
-"source ‾/.vim/mycmd/tex_temp/tex_temp.vim
-"autocmd BufNewFile *.tex 0r ~/.vim/temp/temp.tex
+" source ‾/.vim/mycmd/tex_temp/tex_temp.vim
+autocmd BufNewFile *.tex 0r ~/.vim/temp/temp.tex
 "
 " python用設定
-"source ‾/.vim/mycmd/py_temp/py_temp.vim
-"source ‾/.vim/mycmd/py_temp/mat_font.vim
 autocmd BufRead,BufNewFile *.py setfiletype python
 autocmd BufNewFile *.py 0r ~/.vim/temp/temp.py
 "
 " java用設定
-" autocmd BufNewFile *.java 0r ~/.vim/temp/temp.java
+autocmd BufNewFile *.java 0r ~/.vim/temp/temp.java
 
 " html用設定
-" autocmd BufRead,BufNewFile *.html setfiletype html
-" set nocompatible
+autocmd BufRead,BufNewFile *.html setfiletype html
+set nocompatible
 
 filetype plugin indent off
 
@@ -135,24 +137,28 @@ if has('vim_starting')
   " submode.vim
   NeoBundle 'kana/vim-submode'
   " tex-conceal
-  NeoBundle 'KeitaNakamura/tex-conceal.vim'
+  " NeoBundle 'KeitaNakamura/tex-conceal.vim'
+  " vim-latex
+  NeoBundle 'lervag/vim-latex'
   " vin-tags
   NeoBundle 'szw/vim-tags'
   " vin-endwise
   NeoBundle 'tpope/vim-endwise'
-  " emmet-vim
-  NeoBundle 'mattn/emmet-vim'
   " surround.vim
   NeoBundle 'tpope/vim-surround'
   " open-browser.vim
   NeoBundle 'open-browser.vim'
   " javacomplete2
   NeoBundle 'artur-shaik/vim-javacomplete2'
-  " neosnippet
-  NeoBundle 'Shougo/neosnippet'
-  " neosnippets-snippets
-  NeoBundle 'Shougo/neosnippet-snippets'
-  " emmet.vim
+  "" neocomplete
+  "NeoBundle 'Shougo/neocomplete'
+  "" neocomplcache
+  "NeoBundle 'Shougo/neocomplcache'
+  "" neosnippet
+  "NeoBundle 'Shougo/neosnippet'
+  "" neosnippets-snippets
+  "NeoBundle 'Shougo/neosnippet-snippets'
+  "emmet.vim
   NeoBundle 'mattn/emmet-vim'
   " open-browser
   NeoBundle 'open-browser.vim'
@@ -166,6 +172,10 @@ if has('vim_starting')
   NeoBundle 'kchmck/vim-coffee-script'
   " vim-nodejs-complete
   NeoBundle 'myhere/vim-nodejs-complete'
+  " slimv
+  NeoBundle 'kovisoft/slimv'
+  " vim-clang
+  " NeoBundle 'justmao945/vim-clang'
 
   call neobundle#end()
 
@@ -185,12 +195,6 @@ call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
-" jedi-vim
-let g:jedi#popup_select_first = 0
-let g:jedi#popup_on_dot = 0
-" Not show popup
-autocmd FileType python setlocal completeopt-=preview
-
 " vim-quickrunの設定
 au FileType af nnoremap <silent><buffer>q :quit<CR>
 let g:quickrun_config={'*':{'split': ''}}
@@ -201,9 +205,12 @@ let g:quickrun_config={'*':{'hook/time/enable':'1'}}
 let g:SuperTabContextDefaultCompletionType = "context"
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
+" jedi-vimの設定
+autocmd FileType python setlocal completeopt-=preview
+
 "カラースキームの設定
 set t_Co=256
-colorscheme eva01-LCL
+colorscheme solarized
 syntax on
 
 "ステータスラインの設定
@@ -217,9 +224,6 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_python_checkers = ['pep8']
-
-" NERDTreeの設定
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " tex-conceal用設定
 set conceallevel=2
@@ -269,5 +273,38 @@ let g:node_usejscomplete = 1
 imap <C-f> <C-x><C-o>
 
 " NERDTree
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" neocomplcache
+let g:acp_enableAtStartup = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+let g:neocomplcache_dictionary_filetype_lists = {
+            \ 'default' : ''
+            \}
+
+" neocomplete
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"     let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+" let g:neocomplete#sources#omni#input_patterns.python = ''
+"
+" vim-clang
+" disable auto completion for vim-clang
+" let g:clang_auto = 0
+" " dfault 'longest' can not work with neocomplete
+" let g:clang_c_completeopt = 'menuone'
+" let g:clang_cpp_completeopt = 'menuone'
+"
+" emmet
+let g:user_emmet_settings = {
+            \ 'lang' : 'ja'
+            \}

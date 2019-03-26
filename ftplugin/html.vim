@@ -4,4 +4,8 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 
-colorscheme solarized
+
+let g:user_emmet_learder_key='<c-y>'
+
+
+colorscheme jellybeans

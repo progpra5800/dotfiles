@@ -1,0 +1,1 @@
+/home/kohei/dotfiles/.emacs.d

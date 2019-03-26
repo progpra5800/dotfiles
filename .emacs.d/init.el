@@ -33,38 +33,9 @@
 (savehist-mode 1)
 (setq history-length 500)
 
-(setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args "-i")
-
-(defvar myPackages
-  '(better-defaults
-    elpy
-    molokai-theme))
-
-(elpy-enable)
-(defvar venv-default "~/berrycondae/env/py36")
-(pyvenv-activate venv-default)
-;;(elpy-use-ipython)
-(setq elpy-rpc-backend "jedi")
-
-(when (require 'flycheck nil t)
-  (remove-hook 'elpy-modules 'elpy-module-flymake)
-  (add-hook 'elpy-mode-hook 'flycheck-mode))
-
-(defvar myPackages
-  '(better-defaults
-    smartrep
-    molokai-theme))
-
-(define-key elpy-mode-map (kbd "C-c C-v") 'helm-flycheck)
- (require 'smartrep)
-(smartrep-define-key elpy-mode-map "C-c"
-		     '(("C-n". flychake-next-error)
-		       ("C-p". flychake-previous-error)))
-
-(set-face-background 'highlight-indentation-face "#313131")
-(set-face-background 'highlight-indentation-current-column-face "#777777")
-(add-hook 'elpy-mode-hook 'highlight-indentatio-current-column-mode)
+;; (set-face-background 'highlight-indentation-face "#313131")
+;; (set-face-background 'highlight-indentation-current-column-face "#777777")
+;; (add-hook 'elpy-mode-hook 'highlight-indentatio-current-column-mode)
 
 ;; (let ((ls (member 'mode-line-buffer-indentification
 ;; 		  mode-line-format)))
