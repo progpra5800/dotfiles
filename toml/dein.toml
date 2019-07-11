@@ -1,5 +1,5 @@
 [[plugins]]
-repo = 'kana/vim-oprator-user'
+repo ='kana/vim-operator-user'
 
 [[plugins]]
 repo = 'ervandew/supertab'
@@ -9,7 +9,7 @@ repo = 'thinca/vim-quickrun'
 
 
 [[plugins]]
-repo = 'nathanaelkana/vim-indent-guides'
+repo = 'nathanaelkane/vim-indent-guides'
 
 
 [[plugins]]
