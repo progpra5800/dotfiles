@@ -87,104 +87,135 @@ autocmd BufNewFile *.java 0r ~/.vim/temp/temp.java
 
 " html用設定
 autocmd BufRead,BufNewFile *.html setfiletype html
-set nocompatible
 
-filetype plugin indent off
-
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-
-  call neobundle#begin(expand('~/.vim/bundle'))
-  NeoBundleFetch 'Shougo/neobundle.vim'
-  NeoBundle 'kana/vim-operator-user'
-  " jedi-vim
-  NeoBundle 'davidhalter/jedi-vim'
-  " supertab
-  NeoBundle 'ervandew/supertab'
-  " quickrun
-  NeoBundle 'thinca/vim-quickrun'
-  " flake8
-  NeoBundle 'andviro/flake8-vim'
-  " autopep8
-  NeoBundle 'tell-k/vim-autopep8'
-  " indent-guides
-  NeoBundle 'nathanaelkane/vim-indent-guides'
-  " syntastic
-  NeoBundle 'scrooloose/syntastic'
-  " カラースキーム
-  NeoBundle 'tomasr/molokai'
-  NeoBundle 'sjl/badwolf'
-  NeoBundle 'nanotech/jellybeans.vim'
-  NeoBundle 'W0ng/vim-hybrid'
-  NeoBundle 'jpo/vim-railscasts-theme'
-  NeoBundle 'altercation/vim-colors-solarized'
-  NeoBundle 'vim-scripts/rdark'
-  NeoBundle 'hachy/eva01.vim'
-  NeoBundle 'vim-scripts/twilight'
-  NeoBundle 'tyrannicaltoucan/vim-deep-space'
-  " Unite.vim
-  NeoBundle 'Shougo/unite.vim'
-  NeoBundle 'Shougo/unite-outline'
-  NeoBundle 'ujihisa/unite-colorscheme'
-  " NERDTree
-  NeoBundle 'scrooloose/nerdtree'
-  " lightline
-  NeoBundle 'itchyny/lightline.vim'
-  " Fixwhitespace
-  NeoBundle 'bronson/vim-trailing-whitespace'
-  " indentLine
-  NeoBundle 'Yggdroot/indentLine'
-  " submode.vim
-  NeoBundle 'kana/vim-submode'
-  " tex-conceal
-  " NeoBundle 'KeitaNakamura/tex-conceal.vim'
-  " vim-latex
-  NeoBundle 'lervag/vim-latex'
-  " vin-tags
-  NeoBundle 'szw/vim-tags'
-  " vin-endwise
-  NeoBundle 'tpope/vim-endwise'
-  " surround.vim
-  NeoBundle 'tpope/vim-surround'
-  " open-browser.vim
-  NeoBundle 'open-browser.vim'
-  " javacomplete2
-  NeoBundle 'artur-shaik/vim-javacomplete2'
-  "" neocomplete
-  "NeoBundle 'Shougo/neocomplete'
-  "" neocomplcache
-  "NeoBundle 'Shougo/neocomplcache'
-  "" neosnippet
-  "NeoBundle 'Shougo/neosnippet'
-  "" neosnippets-snippets
-  "NeoBundle 'Shougo/neosnippet-snippets'
-  "emmet.vim
-  NeoBundle 'mattn/emmet-vim'
-  " open-browser
-  NeoBundle 'open-browser.vim'
-  NeoBundle 'mattn/webapi-vim'
-  " vim-css3-syntax
-  NeoBundle 'hail2u/vim-css3-syntax'
-  NeoBundle 'taichouchou2/html5.vim'
-  " vim-javascript
-  NeoBundle 'pangloss/vim-javascript'
-  " vim-coffee-script
-  NeoBundle 'kchmck/vim-coffee-script'
-  " vim-nodejs-complete
-  NeoBundle 'myhere/vim-nodejs-complete'
-  " slimv
-  NeoBundle 'kovisoft/slimv'
-  " vim-clang
-  " NeoBundle 'justmao945/vim-clang'
-
-  call neobundle#end()
-
+if &compatible
+  set nocompatible
 endif
 
+let s:dein_dir = expand('~/.cache/dein')
+
+let s:dein_repo_dir = s:dein_dir . 'repos/github.com/Shougo/dein.vim'
+
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtime^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  let s:toml_dir = expand('~/.vim/toml')
+
+  call dein#load_toml(s:toml_dir . 'dein.toml',      {lazy: 0})
+  call dein#load_toml(s:toml_dir . 'dein_lazy.toml', {lazy: 1})
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+" filetype plugin indent off
+"
+" if has('vim_starting')
+"   set runtimepath+=~/.vim/bundle/neobundle.vim
+"
+"   call neobundle#begin(expand('~/.vim/bundle'))
+"   NeoBundleFetch 'Shougo/neobundle.vim'
+"   NeoBundle 'kana/vim-operator-user'
+"   " jedi-vim
+"   NeoBundle 'davidhalter/jedi-vim'
+"   " supertab
+"   NeoBundle 'ervandew/supertab'
+"   " quickrun
+"   NeoBundle 'thinca/vim-quickrun'
+"   " flake8
+"   NeoBundle 'andviro/flake8-vim'
+"   " autopep8
+"   NeoBundle 'tell-k/vim-autopep8'
+"   " indent-guides
+"   NeoBundle 'nathanaelkane/vim-indent-guides'
+"   " syntastic
+"   NeoBundle 'scrooloose/syntastic'
+"   " カラースキーム
+"   NeoBundle 'tomasr/molokai'
+"   NeoBundle 'sjl/badwolf'
+"   NeoBundle 'nanotech/jellybeans.vim'
+"   NeoBundle 'W0ng/vim-hybrid'
+"   NeoBundle 'jpo/vim-railscasts-theme'
+"   NeoBundle 'altercation/vim-colors-solarized'
+"   NeoBundle 'vim-scripts/rdark'
+"   NeoBundle 'hachy/eva01.vim'
+"   NeoBundle 'vim-scripts/twilight'
+"   NeoBundle 'tyrannicaltoucan/vim-deep-space'
+"   " Unite.vim
+"   NeoBundle 'Shougo/unite.vim'
+"   NeoBundle 'Shougo/unite-outline'
+"   NeoBundle 'ujihisa/unite-colorscheme'
+"   " NERDTree
+"   NeoBundle 'scrooloose/nerdtree'
+"   " lightline
+"   NeoBundle 'itchyny/lightline.vim'
+"   " Fixwhitespace
+"   NeoBundle 'bronson/vim-trailing-whitespace'
+"   " indentLine
+"   NeoBundle 'Yggdroot/indentLine'
+"   " submode.vim
+"   NeoBundle 'kana/vim-submode'
+"   " tex-conceal
+"   " NeoBundle 'KeitaNakamura/tex-conceal.vim'
+"   " vim-latex
+"   NeoBundle 'lervag/vim-latex'
+"   " vin-tags
+"   NeoBundle 'szw/vim-tags'
+"   " vin-endwise
+"   NeoBundle 'tpope/vim-endwise'
+"   " surround.vim
+"   NeoBundle 'tpope/vim-surround'
+"   " open-browser.vim
+"   NeoBundle 'open-browser.vim'
+"   " javacomplete2
+"   NeoBundle 'artur-shaik/vim-javacomplete2'
+"   "" neocomplete
+"   "NeoBundle 'Shougo/neocomplete'
+"   "" neocomplcache
+"   "NeoBundle 'Shougo/neocomplcache'
+"   "" neosnippet
+"   "NeoBundle 'Shougo/neosnippet'
+"   "" neosnippets-snippets
+"   "NeoBundle 'Shougo/neosnippet-snippets'
+"   "emmet.vim
+"   NeoBundle 'mattn/emmet-vim'
+"   " open-browser
+"   NeoBundle 'open-browser.vim'
+"   NeoBundle 'mattn/webapi-vim'
+"   " vim-css3-syntax
+"   NeoBundle 'hail2u/vim-css3-syntax'
+"   NeoBundle 'taichouchou2/html5.vim'
+"   " vim-javascript
+"   NeoBundle 'pangloss/vim-javascript'
+"   " vim-coffee-script
+"   NeoBundle 'kchmck/vim-coffee-script'
+"   " vim-nodejs-complete
+"   NeoBundle 'myhere/vim-nodejs-complete'
+"   " slimv
+"   NeoBundle 'kovisoft/slimv'
+"   " vim-clang
+"   " NeoBundle 'justmao945/vim-clang'
+"
+"   call neobundle#end()
+"
+" endif
+
 filetype plugin indent on
+syntax enable
+
+if dein#check_install()
+  call dein#install()
+endif
 
 " neobundle.log
-let g:neobundle#log_filename = $HOME."/neobundle.log"
+" let g:neobundle#log_filename = $HOME."/neobundle.log"
 
 call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
 call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')

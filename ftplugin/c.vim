@@ -1,4 +1,4 @@
-colorscheme jellybeans
+colorscheme hybrid
 
 set expandtab
 set tabstop=2

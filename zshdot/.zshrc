@@ -62,13 +62,3 @@ function mkcd(){
 
 # added by Anaconda3 installer
 export PATH="$HOME/anaconda3/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.5.0/bin:$PATH"
-eval "$(rbenv init -)"
-
-alias proterm='terminator -l proterminator & exit'
-alias proterm2='terminator -l proterminator2 & exit'
-
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
